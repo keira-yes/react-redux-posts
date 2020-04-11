@@ -10,7 +10,7 @@ export const postsReducer = (state = initialState, action) => {
     case CREATE_POST:
       return {...state, posts: [...state.posts, action.payload]};
     case FETCH_POSTS:
-      return {...state, postsFetch: action.payload}
+      return {...state, postsFetch: action.payload};
     default: return state;
   }
 };

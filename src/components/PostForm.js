@@ -7,26 +7,26 @@ class PostForm extends React.Component {
     super(props);
 
     this.state = {
-      postTitle: ''
+      title: ''
     }
   }
 
   submitHandler = (e) => {
     e.preventDefault();
-    const {postTitle} = this.state;
+    const {title} = this.state;
 
-    if(!postTitle.trim()) {
+    if(!title.trim()) {
       return;
     }
 
     const newPost = {
-      postTitle,
+      title,
       id: Date.now().toString()
     };
 
     this.props.createPost(newPost);
 
-    this.setState({postTitle: ''})
+    this.setState({title: ''})
   };
 
   inputChangeHandler = (e) => {
@@ -38,7 +38,7 @@ class PostForm extends React.Component {
   };
 
   render() {
-    const {postTitle} = this.state;
+    const {title} = this.state;
     return (
       <div>
         <form onSubmit={this.submitHandler} className="mb-5">
@@ -48,8 +48,8 @@ class PostForm extends React.Component {
               type="text"
               className="form-control"
               id="title"
-              name="postTitle"
-              value={postTitle}
+              name="title"
+              value={title}
               onChange={this.inputChangeHandler}
             />
             <button type="submit" className="btn btn-success mt-3">Create post</button>
