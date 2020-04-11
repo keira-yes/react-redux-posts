@@ -4,7 +4,7 @@ export default ({post}) => {
   return (
     <div className="card">
       <div className="card-body">
-        <h5 className="card-title">Post {post}</h5>
+        <h5 className="card-title">{post.postTitle}</h5>
       </div>
     </div>
   )
