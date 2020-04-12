@@ -5,16 +5,22 @@ import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {compose, createStore, applyMiddleware} from "redux";
+import createSagaMiddleware from 'redux-saga';
 import App from './App';
 import {rootReducer} from "./redux/rootReducer";
 import {forbiddenWordsMiddleware} from "./redux/middleware";
+import {sagaWatcher} from "./redux/saga";
+
+const saga = createSagaMiddleware();
 
 const store = createStore(rootReducer, compose(
   applyMiddleware (
-    thunk, forbiddenWordsMiddleware
+    thunk, forbiddenWordsMiddleware, saga
   ),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 ));
+
+saga.run(sagaWatcher);
 
 ReactDOM.render(
   <React.StrictMode>
